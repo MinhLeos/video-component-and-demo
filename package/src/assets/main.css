@@ -55,11 +55,9 @@ media-player[data-focus]:not([data-playing]) {
         display: none;
     }
     .media-submenu-label {
-        /* color: red !important; */
         font-size: smaller !important;
     }
     .media-submenu-hint {
-        /* color: red !important; */
         font-size: smaller !important;
     }
     .pip-btn,.caption-btn {
@@ -80,7 +78,7 @@ media-player[data-focus]:not([data-playing]) {
         /* left: 20px !important; */
         /* right: unset !important; */
         right: 100px !important;
-        height: 130px !important;
+        height: 150px !important;
         min-width: 160px !important;
     }
     .setting-menu .media-menu .media-submenu-button {
@@ -94,17 +92,19 @@ media-player[data-focus]:not([data-playing]) {
         width: 180px !important;
     }
 }
-
 @container player (width < 400px) {
     .media-slider-container {
         display: none;
     }
+}
+@container player (width < 360px) {
+    .media-slider-container {
+        display: none;
+    }
     .media-submenu-label, .media-radio-label {
-        /* color: red !important; */
         font-size: 11px !important;
     }
     .media-submenu-hint, .media-radio-hint {
-        /* color: red !important; */
         font-size: 11px !important;
     }
     .setting-menu .media-menu {
@@ -112,19 +112,97 @@ media-player[data-focus]:not([data-playing]) {
         /* left: 20px !important; */
         /* right: unset !important; */
         right: 100px !important;
-        height: 130px !important;
+        height: 150px !important;
         min-width: 150px !important;
     }
      .setting-menu .media-menu .media-submenu-button {
         width: 150px !important;
     }
     .setting-menu .media-menu .media-submenu {
-        min-width: 120px !important;
+        min-width: 140px !important;
     }
     .setting-menu .media-menu .media-radio-group {
         width: 140px !important;
     }
     .setting-menu .media-menu .media-radio {
-        width: 120px !important;
+        width: 140px !important;
+    }
+}
+@media screen and (max-width: 360px) {
+  .media-slider-container {
+        display: none;
+    }
+    .media-submenu-label, .media-radio-label {
+        font-size: 11px !important;
+    }
+    .media-submenu-hint, .media-radio-hint {
+        font-size: 11px !important;
+    }
+    .setting-menu .media-menu {
+        top: 2px !important;
+        /* left: 20px !important; */
+        /* right: unset !important; */
+        right: 100px !important;
+        height: 150px !important;
+        min-width: 150px !important;
+    }
+     .setting-menu .media-menu .media-submenu-button {
+        width: 150px !important;
+    }
+    .setting-menu .media-menu .media-submenu {
+        min-width: 140px !important;
+    }
+    .setting-menu .media-menu .media-radio-group {
+        width: 140px !important;
+    }
+    .setting-menu .media-menu .media-radio {
+        width: 140px !important;
+    }
+}
+@media screen and (max-width: 400px) {
+  .media-slider-container {
+        display: none;
+    }
+}
+@media screen and (max-width: 500px) {
+    .media-slider-preview {
+        display: none;
+    }
+    .media-submenu-label {
+        font-size: smaller !important;
+    }
+    .media-submenu-hint {
+        font-size: smaller !important;
+    }
+    .pip-btn,.caption-btn {
+        display: none !important;
+    }
+    .fullscreen-btn .media-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .setting-menu .media-button {
+        position: absolute;
+        top: 0;
+        right: 50px;
+    }
+    .setting-menu .media-menu {
+        top: 2px !important;
+        /* left: 20px !important; */
+        /* right: unset !important; */
+        right: 100px !important;
+        height: 150px !important;
+        min-width: 160px !important;
+    }
+    .setting-menu .media-menu .media-submenu-button {
+        width: 180px !important;
+    }
+    .setting-menu .media-menu .media-submenu {
+        min-width: 180px !important;
+    }
+    .setting-menu .media-menu .media-radio-group,
+    .setting-menu .media-menu .media-radio {
+        width: 180px !important;
     }
 }

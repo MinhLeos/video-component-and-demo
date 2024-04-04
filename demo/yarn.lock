@@ -772,10 +772,10 @@ jiti@^1.21.0:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.21.0.tgz#7c97f8fe045724e136a397f7340475244156105d"
   integrity sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==
 
-leo-video-player@1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/leo-video-player/-/leo-video-player-1.0.5.tgz#7a41652aa614db1f93cd35888c4e93ab41018386"
-  integrity sha512-FjfTQnOqpS+VlrD3LDfTIYLV2M28paMYNHhSRHOltGA2yf8Jsz5NdZGDcX1z1+QWtsbZo9HlGsFDSgG+oSMw9w==
+leo-video-player@1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/leo-video-player/-/leo-video-player-1.0.11.tgz#28b224f2f1c31fc041ac7d570620da8f82ae9f41"
+  integrity sha512-kEQ/QlEm15eN+uqYHJCj13+b+h2mTjmmMsCvzbGyGpvVqhzeR+8RSbN5l2GRkO8fqGJVTCd7nPrfu8w8l1HkXg==
   dependencies:
     media-icons "1.0.0"
     vidstack "1.9.7"
