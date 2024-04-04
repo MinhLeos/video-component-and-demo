@@ -1,0 +1,130 @@
+@import 'vidstack/player/styles/base.css';
+@import './styles/buttons.css';
+@import './styles/captions.css';
+@import './styles/chapter-title.css';
+@import './styles/controls.css';
+@import './styles/gestures.css';
+@import './styles/menus.css';
+@import './styles/poster.css';
+@import './styles/sliders.css';
+@import './styles/time.css';
+@import './styles/tooltips.css';
+@import './styles/setting.css';
+@import './styles/submenu.css';
+
+
+media-player[data-view-type='video'] {
+    --media-brand: #f5f5f5;
+    --media-focus-ring-color: #4e9cf6;
+    --media-focus-ring: 0 0 0 3px var(--media-focus-ring-color);
+
+    --media-tooltip-y-offset: 30px;
+    --media-menu-y-offset: 30px;
+
+    font-family: sans-serif;
+    aspect-ratio: 16 / 9;
+    color: #f5f5f5;
+    background-color: #212121;
+    border-radius: 6px;
+    overflow: hidden;
+    contain: style;
+    container-name: player;
+    container-type: inline-size;
+    max-height: 100% !important;
+}
+
+media-player[data-focus]:not([data-playing]) {
+  box-shadow: var(--media-focus-ring);
+}
+
+.error-message {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #33333380;
+    width: 95%;
+    color: #fff;
+}
+.media-controls-group, .media-submenu-button {
+    width: unset !important;
+}
+
+@container player (width < 510px) {
+    .media-slider-preview {
+        display: none;
+    }
+    .media-submenu-label {
+        /* color: red !important; */
+        font-size: smaller !important;
+    }
+    .media-submenu-hint {
+        /* color: red !important; */
+        font-size: smaller !important;
+    }
+    .pip-btn,.caption-btn {
+        display: none !important;
+    }
+    .fullscreen-btn .media-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .setting-menu .media-button {
+        position: absolute;
+        top: 0;
+        right: 50px;
+    }
+    .setting-menu .media-menu {
+        top: 2px !important;
+        /* left: 20px !important; */
+        /* right: unset !important; */
+        right: 100px !important;
+        height: 130px !important;
+        min-width: 160px !important;
+    }
+    .setting-menu .media-menu .media-submenu-button {
+        width: 180px !important;
+    }
+    .setting-menu .media-menu .media-submenu {
+        min-width: 180px !important;
+    }
+    .setting-menu .media-menu .media-radio-group,
+    .setting-menu .media-menu .media-radio {
+        width: 180px !important;
+    }
+}
+
+@container player (width < 400px) {
+    .media-slider-container {
+        display: none;
+    }
+    .media-submenu-label, .media-radio-label {
+        /* color: red !important; */
+        font-size: 11px !important;
+    }
+    .media-submenu-hint, .media-radio-hint {
+        /* color: red !important; */
+        font-size: 11px !important;
+    }
+    .setting-menu .media-menu {
+        top: 2px !important;
+        /* left: 20px !important; */
+        /* right: unset !important; */
+        right: 100px !important;
+        height: 130px !important;
+        min-width: 150px !important;
+    }
+     .setting-menu .media-menu .media-submenu-button {
+        width: 150px !important;
+    }
+    .setting-menu .media-menu .media-submenu {
+        min-width: 120px !important;
+    }
+    .setting-menu .media-menu .media-radio-group {
+        width: 140px !important;
+    }
+    .setting-menu .media-menu .media-radio {
+        width: 120px !important;
+    }
+}

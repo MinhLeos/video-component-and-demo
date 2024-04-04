@@ -1,0 +1,44 @@
+{
+    "name": "leo-video-player",
+    "version": "1.0.5",
+    "type": "module",
+    "exports": {
+        ".": "./dist/video-player.js",
+        "./style": "./public/styles/style.min.css"
+    },
+    "files": [
+        "dist",
+        "public",
+        "video-player.js",
+        "style.min.css"
+    ],
+    "keywords": [
+        "video",
+        "player",
+        "video-player"
+    ],
+    "scripts": {
+        "dev": "vite",
+        "build": "npm run build:css && vite build",
+        "preview": "vite preview",
+        "build:css": "npx postcss ./src/assets/main.css -o ./public/styles/style.min.css"
+    },
+    "devDependencies": {
+        "autoprefixer": "10.4.2",
+        "cssnano": "6.0.1",
+        "postcss": "8.4.0",
+        "postcss-cli": "10.1.0",
+        "postcss-nesting": "12.0.1",
+        "vite": "5.2.0",
+        "postcss-import": "16.1.0",
+        "vite-plugin-css": "1.0.4"
+    },
+    "peerDependencies": {
+        "media-icons": "1.0.0",
+        "vidstack": "1.9.7"
+    },
+    "dependencies": {
+        "media-icons": "1.0.0",
+        "vidstack": "1.9.7"
+    }
+}
