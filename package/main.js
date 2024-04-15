@@ -1,3 +1,5 @@
+import { TextTrack } from 'vidstack';
+
 import './src/assets/main.css';
 import './src/vidstack/vidstack';
 import './src/component/fullscreen-btn';
@@ -16,10 +18,10 @@ class VideoPlayer extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['src', 'captionUrl', 'thumnailUrl', 'thumnailPreviewUrl'];
+    return ['src', 'captionUrl', 'thumnailUrl', 'thumnailPreviewUrl', 'thumnailAltText', 'isAutoPlay'];
   }
 
-  attributeChangedCallback(name, oldValue, newValue, thumnailAltText) {
+  attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'src') {
       this.render();
       this.handleTrack();
@@ -34,7 +36,9 @@ class VideoPlayer extends HTMLElement {
   }
 
   render() {
+    console.log('render');
     const src = this.getAttribute('src');
+    const isAutoPlay = this.getAttribute('isAutoPlay');
     const thumnailUrl = this.getAttribute('thumnailUrl');
     const thumnailPreviewUrl = this.getAttribute('thumnailPreviewUrl');
     const thumnailAltText = this.getAttribute('thumnailAltText');
@@ -44,7 +48,7 @@ class VideoPlayer extends HTMLElement {
         src="${src}"
         crossorigin
         playsinline
-        autoplay
+        autoplay="${isAutoPlay}"
         stream-type="on-demand"
       >
         <media-provider>
@@ -65,7 +69,7 @@ class VideoPlayer extends HTMLElement {
         <!-- Controls -->
         <media-controls>
           <div class="media-controls-spacer"></div>
-          <media-controls-group class="media-controls-group">
+          <media-controls-group class="media-controls-group time-slider">
             <!-- Time Slider -->
             <media-time-slider class="media-slider">
               <media-slider-chapters>
@@ -88,13 +92,15 @@ class VideoPlayer extends HTMLElement {
             </media-time-slider>
           </media-controls-group>
 
-          <media-controls-group class="media-controls-group">
-            <!-- Play Button -->
-            <play-button></play-button>
+          <media-controls-group class="media-controls-group list-btn">
+            <div class="custom-btn">
+                <!-- Play Button -->
+                <play-button class="play-button-container"></play-button>
 
-            <!-- Seek Button -->
-            <seek-button></seek-button>
-
+                <!-- Seek Button -->
+                <seek-button time="10" class="seek-button-backward-container"></seek-button>
+                <seek-button time="10" isForward="true" class="seek-button-forward-container"></seek-button>
+            </div>
             <!-- Mute Button -->
             <mute-button></mute-button>
 
@@ -118,9 +124,9 @@ class VideoPlayer extends HTMLElement {
 
            <!-- Settings Menu -->
             <setting-button></setting-button>
-
+            
             <!-- PIP Button -->
-            <pip-button></pip-button>
+            <pip-button class="pip-button-container"></pip-button>
 
             <!-- Fullscreen Button -->
              <fullscreen-button></fullscreen-button> 
@@ -137,16 +143,33 @@ class VideoPlayer extends HTMLElement {
   handleTrack() {
     const captionUrl = this.getAttribute('captionUrl');
     const player = document.querySelector('media-player');
-    player.textTracks.clear();
-    const track = {
-      src: captionUrl,
-      label: 'English',
-      language: 'en-US',
-      kind: 'subtitles',
-      default: true,
-      'data-type': 'vtt',
-    };
-    player.textTracks.add(track);
+    if (player) {
+      player.textTracks.clear();
+      const track = new TextTrack({
+        src: captionUrl,
+        label: 'English',
+        language: 'en-US',
+        kind: 'subtitles',
+        default: false,
+        'data-type': 'vtt',
+        id: 'default'
+      });
+      player.textTracks.add(track);
+      track.addEventListener('load', () => {
+        const trackHandle = player.textTracks.getById('default');
+        const myCues = trackHandle?.cues || []
+        myCues.forEach((cue, index) => {
+          if (index % 2 === 0 && myCues[index + 1] !== undefined && myCues[index + 1] !== null) {
+            cue.text += ' ' + myCues[index + 1].text;
+            if (!isNaN(myCues[index + 1].endTime)) cue.endTime = myCues[index + 1].endTime;
+          } else {
+            cue.text = '';
+            cue.endTime = -1;
+            cue.startTime = -1;
+          }
+        })
+      });
+    }
   }
 
   handleEvent() {

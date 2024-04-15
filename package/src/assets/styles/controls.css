@@ -16,20 +16,24 @@ media-controls {
 
 media-controls[data-visible] {
   opacity: 1;
-  background-image: linear-gradient(
-    to top,
-    rgb(0 0 0 / 0.5),
-    10%,
-    transparent,
-    95%,
-    rgb(0 0 0 / 0.3)
-  );
+  background-image: linear-gradient(to top, rgb(0 0 0 / 0.5), 10%, transparent, 95%, rgb(0 0 0 / 0.3));
 }
 
 media-controls-group {
   display: flex;
   align-items: center;
   width: 100%;
+}
+media-controls-group.list-btn {
+  background-color: #00000099;
+  column-gap: 8px;
+  row-gap: 8px;
+  /* gap: 8px; */
+}
+media-controls-group.time-slider {
+  background-color: #00000099;
+  margin-bottom: 4px;
+  height: 20px;
 }
 
 media-controls-group {
