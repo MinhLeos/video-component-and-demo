@@ -1,6 +1,6 @@
 {
   "name": "leo-video-player",
-  "version": "1.0.19",
+  "version": "1.0.30",
   "type": "module",
   "exports": {
     ".": "./dist/video-player.js",
