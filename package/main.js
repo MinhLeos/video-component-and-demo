@@ -36,9 +36,7 @@ class VideoPlayer extends HTMLElement {
   }
 
   render() {
-    console.log('render');
     const src = this.getAttribute('src');
-    const isAutoPlay = this.getAttribute('isAutoPlay');
     const thumnailUrl = this.getAttribute('thumnailUrl');
     const thumnailPreviewUrl = this.getAttribute('thumnailPreviewUrl');
     const thumnailAltText = this.getAttribute('thumnailAltText');
@@ -48,7 +46,6 @@ class VideoPlayer extends HTMLElement {
         src="${src}"
         crossorigin
         playsinline
-        autoplay="${isAutoPlay}"
         stream-type="on-demand"
       >
         <media-provider>
@@ -59,6 +56,10 @@ class VideoPlayer extends HTMLElement {
           <p id="error-message" class="error-message">Error</p>
           </media-poster>
         </media-provider>
+
+        <div class="media-buffering-indicator">
+          <media-spinner class="media-buffering-spinner" size="96" track-width="8"></media-spinner>
+        </div>
 
         <!-- Gestures -->
         <gesture-player></gesture-player>
@@ -143,6 +144,7 @@ class VideoPlayer extends HTMLElement {
   handleTrack() {
     const captionUrl = this.getAttribute('captionUrl');
     const player = document.querySelector('media-player');
+
     if (player) {
       player.textTracks.clear();
       const track = new TextTrack({
@@ -150,9 +152,9 @@ class VideoPlayer extends HTMLElement {
         label: 'English',
         language: 'en-US',
         kind: 'subtitles',
-        default: false,
-        'data-type': 'vtt',
-        id: 'default'
+        id: 'default',
+        type: 'vtt',
+        default: true,
       });
       player.textTracks.add(track);
       track.addEventListener('load', () => {
@@ -173,18 +175,21 @@ class VideoPlayer extends HTMLElement {
   }
 
   handleEvent() {
+    const isAutoPlay = this.getAttribute('isAutoPlay');
     const myPlayer = document.querySelector('media-player');
     if (myPlayer) {
       myPlayer.addEventListener('can-play', () => {
-        myPlayer?.play();
+        if (isAutoPlay) {
+          myPlayer?.play();
+        }
       });
       myPlayer.addEventListener('error', () => {
         const errorMessageEle = document.getElementById('error-message');
-        console.log('errorMessageEle', errorMessageEle);
         errorMessageEle.style.display = 'block';
       });
     }
   }
+
 }
 
 export default customElements.define('mgi-video-player', VideoPlayer);

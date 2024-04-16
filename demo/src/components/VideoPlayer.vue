@@ -59,6 +59,7 @@ const thumnailAltText = "Alt Text Demo Thumnail";
     </div>
     <mgi-video-player
       v-if="isPlayVideo"
+      :isAutoPlay="true"
       :thumnailPreviewUrl="thumnailPreviewUrl"
       :captionUrl="captionUrl"
       :thumnailUrl="thumnailUrl"
