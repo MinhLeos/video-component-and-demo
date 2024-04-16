@@ -36,6 +36,7 @@ class VideoPlayer extends HTMLElement {
   }
 
   render() {
+    const isAutoPlay = this.getAttribute('isAutoPlay');
     const src = this.getAttribute('src');
     const thumnailUrl = this.getAttribute('thumnailUrl');
     const thumnailPreviewUrl = this.getAttribute('thumnailPreviewUrl');
@@ -47,6 +48,7 @@ class VideoPlayer extends HTMLElement {
         crossorigin
         playsinline
         stream-type="on-demand"
+        ${isAutoPlay ? 'autoplay' : ''}
       >
         <media-provider>
           <media-poster
@@ -179,6 +181,7 @@ class VideoPlayer extends HTMLElement {
     const myPlayer = document.querySelector('media-player');
     if (myPlayer) {
       myPlayer.addEventListener('can-play', () => {
+        console.log('isAutoPlay', isAutoPlay)
         if (isAutoPlay) {
           myPlayer?.play();
         }

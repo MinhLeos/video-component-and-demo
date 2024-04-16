@@ -778,9 +778,9 @@ jiti@^1.21.0:
   integrity sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==
 
 leo-video-player@latest:
-  version "1.0.51"
-  resolved "https://registry.yarnpkg.com/leo-video-player/-/leo-video-player-1.0.51.tgz#3054d83eefb0fc749dd632d00f66ba0df6efbe33"
-  integrity sha512-dmsbhQuew1yewDahI7krHsGfEeyXgO0Ff+yQUoipTRhqE9gG3J8AcaN0p1pcbDJG621LgJnHfz2iTWEijfErew==
+  version "1.0.64"
+  resolved "https://registry.yarnpkg.com/leo-video-player/-/leo-video-player-1.0.64.tgz#18f9447786ae355156ef52a17873918afbfea7bf"
+  integrity sha512-QqtiNPpPlfC1eEHkmJFm63K/xR5y7+ljpGry3aeErj3ms9O954GgiOmW6WHkjEIDI5REkZ2a8W45NGf6AqRzgA==
   dependencies:
     media-icons "1.0.0"
     vidstack "1.9.7"
@@ -1227,9 +1227,9 @@ vidstack@1.9.7:
     media-captions "^1.0.1"
 
 vite@^5.2.0:
-  version "5.2.8"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-5.2.8.tgz#a99e09939f1a502992381395ce93efa40a2844aa"
-  integrity sha512-OyZR+c1CE8yeHw5V5t59aXsUPPVTHMDjEZz8MgguLL/Q7NblxhZUlTu9xSPqlsUO/y+X7dlU05jdhvyycD55DA==
+  version "5.2.9"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.2.9.tgz#cd9a356c6ff5f7456c09c5ce74068ffa8df743d9"
+  integrity sha512-uOQWfuZBlc6Y3W/DTuQ1Sr+oIXWvqljLvS881SVmAj00d5RdgShLcuXWxseWPd4HXwiYBFW/vXHfKFeqj9uQnw==
   dependencies:
     esbuild "^0.20.1"
     postcss "^8.4.38"
