@@ -154,9 +154,9 @@ class VideoPlayer extends HTMLElement {
         label: 'English',
         language: 'en-US',
         kind: 'subtitles',
-        id: 'default',
-        type: 'vtt',
         default: true,
+        type: 'vtt',
+        id: 'default',
       });
       player.textTracks.add(track);
       track.addEventListener('load', () => {
@@ -181,7 +181,6 @@ class VideoPlayer extends HTMLElement {
     const myPlayer = document.querySelector('media-player');
     if (myPlayer) {
       myPlayer.addEventListener('can-play', () => {
-        console.log('isAutoPlay', isAutoPlay)
         if (isAutoPlay) {
           myPlayer?.play();
         }
@@ -192,7 +191,6 @@ class VideoPlayer extends HTMLElement {
       });
     }
   }
-
 }
 
 export default customElements.define('mgi-video-player', VideoPlayer);

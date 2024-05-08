@@ -3,16 +3,18 @@
 // import './setting-menu/caption-menu';
 
 class SettingButton extends HTMLElement {
-    constructor() {
-        super();
-    }
-    connectedCallback() {
-        this.render();
-        this.handleCloseMenu();
-    }
+  constructor() {
+    super();
+  }
+  connectedCallback() {
+    this.render();
+    this.handleCloseMenu();
+    this.handleOpenSetting();
+    this.handleKeyPress();
+  }
 
-    render() {
-        this.innerHTML = `
+  render() {
+    this.innerHTML = `
           <!-- Settings Menu -->
             <media-menu class="setting-menu">
                 <media-tooltip>
@@ -103,20 +105,55 @@ class SettingButton extends HTMLElement {
                 </media-menu-items>
             </media-menu>
             `;
+  }
+  handleCloseMenu() {
+    const handleClick = () => {
+      const menuElement = this.querySelector('media-menu.setting-menu');
+      if (menuElement) {
+        menuElement?.close();
+      }
     }
-    handleCloseMenu() {
-        const handleClick = () => {
-            const menuElement = this.querySelector('media-menu.setting-menu');
-            if (menuElement) {
-                menuElement?.close();
-            }
-        }
 
-        const closeElement = this.querySelector('media-icon.media-icon-close');
-        if (closeElement) {
-            closeElement.addEventListener('click', handleClick)
-        }
+    const closeElement = this.querySelector('media-icon.media-icon-close');
+    if (closeElement) {
+      closeElement.addEventListener('click', handleClick)
     }
+  }
+  handleOpenSetting() {
+    const menuElement = this.querySelector('media-menu.setting-menu');
+    const observer = new MutationObserver((mutationsList, observer) => {
+      mutationsList.forEach((mutation) => {
+        if (mutation.attributeName === 'data-open') {
+          const currentValue = menuElement.getAttribute('data-open');
+          if (currentValue === null) {
+            this.render();
+            this.handleCloseMenu();
+            this.handleOpenSetting();
+            this.handleKeyPress();
+            this.handleFocusSetting();
+          }
+        }
+      });
+    });
+    observer.observe(menuElement, { attributes: true });
+  }
+  handleFocusSetting() {
+    const mediaMenuButtonElement = this.querySelector('media-menu-button.media-button');
+    if (mediaMenuButtonElement) {
+      mediaMenuButtonElement.focus();
+    }
+  }
+  handleKeyPress() {
+    const mediaMenuButtonElement = this.querySelector('media-menu-button.media-button');
+    if (mediaMenuButtonElement) {
+      mediaMenuButtonElement.addEventListener('keypress', (e) => {
+        if (e?.key === " ") {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      });
+    }
+  }
 }
 
 export default customElements.define('setting-button', SettingButton);

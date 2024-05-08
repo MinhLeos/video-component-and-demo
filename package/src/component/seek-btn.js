@@ -7,9 +7,11 @@ class SeekButton extends HTMLElement {
   }
   connectedCallback() {
     this.render();
+    this.handleKeyPress();
   }
   attributeChangedCallback(time, isForward) {
     this.render();
+    this.handleKeyPress();
   }
   render() {
     const time = this.getAttribute('time');
@@ -24,7 +26,7 @@ class SeekButton extends HTMLElement {
                     </media-seek-button>
               </media-tooltip-trigger>
               <media-tooltip-content class="media-tooltip" placement="top">
-                <span class="media-play-tooltip-text">Seek Forward</span>
+                <span>Seek Forward</span>
               </media-tooltip-content>
             </media-tooltip>
             `
@@ -35,9 +37,20 @@ class SeekButton extends HTMLElement {
               </media-seek-button>
           </media-tooltip-trigger>
           <media-tooltip-content class="media-tooltip" placement="top">
-            <span class="media-play-tooltip-text">Seek Backward</span>
+            <span>Seek Backward</span>
           </media-tooltip-content>
         </media-tooltip>`;
+  }
+  handleKeyPress() {
+    const mediaSeekButtonElement = this.querySelector('media-seek-button.media-button');
+    if (mediaSeekButtonElement) {
+      mediaSeekButtonElement.addEventListener('keypress', (e) => {
+        if (e?.key === " ") {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      });
+    }
   }
 }
 
